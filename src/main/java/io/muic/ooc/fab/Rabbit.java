@@ -3,7 +3,7 @@ package io.muic.ooc.fab;
 import java.util.List;
 import java.util.Random;
 
-public class Rabbit {
+public class Rabbit extends Animal{
     // Characteristics shared by all rabbits (class variables).
 
     // The age at which a rabbit can start to breed.

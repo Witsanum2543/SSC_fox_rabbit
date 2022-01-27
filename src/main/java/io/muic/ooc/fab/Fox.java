@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.Random;
 
-public class Fox {
+public class Fox extends Animal{
     // Characteristics shared by all foxes (class variables).
 
     // The age at which a fox can start to breed.
