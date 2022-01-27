@@ -22,8 +22,6 @@ public class Fox extends Animal{
     private static final Random RANDOM = new Random();
 
     // Individual characteristics (instance fields).
-    // The fox's age.
-    private int age;
     // Whether the fox is alive or not.
     private boolean alive;
     // The fox's position.
@@ -42,12 +40,11 @@ public class Fox extends Animal{
      * @param location The location within the field.
      */
     public Fox(boolean randomAge, Field field, Location location) {
-        age = 0;
         alive = true;
         this.field = field;
         setLocation(location);
         if (randomAge) {
-            age = RANDOM.nextInt(MAX_AGE);
+            setAge(RANDOM.nextInt(getMaxAge()));
             foodLevel = RANDOM.nextInt(RABBIT_FOOD_VALUE);
         } else {
             // leave age at 0
@@ -59,7 +56,6 @@ public class Fox extends Animal{
      * This is what the fox does most of the time: it hunts for rabbits. In the
      * process, it might breed, die of hunger, or die of old age.
      *
-     * @param field The field currently occupied.
      * @param newFoxes A list to return newly born foxes.
      */
     public void hunt(List<Fox> newFoxes) {
@@ -112,16 +108,6 @@ public class Fox extends Animal{
         }
         location = newLocation;
         field.place(this, newLocation);
-    }
-
-    /**
-     * Increase the age. This could result in the fox's death.
-     */
-    private void incrementAge() {
-        age++;
-        if (age > MAX_AGE) {
-            setDead();
-        }
     }
 
     /**
@@ -193,18 +179,23 @@ public class Fox extends Animal{
      * A fox can breed if it has reached the breeding age.
      */
     private boolean canBreed() {
-        return age >= BREEDING_AGE;
+        return getAge() >= BREEDING_AGE;
     }
 
     /**
      * Indicate that the fox is no longer alive. It is removed from the field.
      */
-    private void setDead() {
+    @Override
+    protected void setDead() {
         alive = false;
         if (location != null) {
             field.clear(location);
             location = null;
             field = null;
         }
+    }
+    @Override
+    protected int getMaxAge() {
+        return MAX_AGE;
     }
 }
