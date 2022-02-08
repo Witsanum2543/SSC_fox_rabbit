@@ -172,6 +172,7 @@ public class Simulator {
                         Location location = new Location(row, col);
                         Animal animal = AnimalFactory.createAnimal(animalTypes, true, field, location);
                         animals.add(animal);
+                        break;
                     }
                 }
             }
