@@ -4,17 +4,10 @@ package io.muic.ooc.fab.view;
 import io.muic.ooc.fab.Field;
 import io.muic.ooc.fab.FieldStats;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class SimulatorView extends JFrame {
 
@@ -103,7 +96,7 @@ public class SimulatorView extends JFrame {
             for (int col = 0; col < field.getWidth(); col++) {
                 Object animal = field.getObjectAt(row, col);
                 if (animal != null) {
-                    stats.incrementCount(animal.getClass());
+                    stats = new Counter(stats).update(animal);
                     fieldView.drawMark(col, row, getColor(animal.getClass()));
                 } else {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
