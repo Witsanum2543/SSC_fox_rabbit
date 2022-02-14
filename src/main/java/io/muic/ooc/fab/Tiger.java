@@ -6,16 +6,13 @@ import java.util.Random;
 
 public class Tiger extends Animal{
     // The age at which a Tiger can start to breed.
-    private static final int BREEDING_AGE = 10;
+    private static final int BREEDING_AGE = 30;
     // The age to which a Tiger can live.
-    private static final int MAX_AGE = 150;
+    private static final int MAX_AGE = 120;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.02;
+    private static final double BREEDING_PROBABILITY = 0.04;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 3;
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a Tiger can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
+    private static final int MAX_LITTER_SIZE = 1;
     // Random generator
     private static final Random RANDOM = new Random();
 
@@ -34,7 +31,7 @@ public class Tiger extends Animal{
      */
     public Tiger(boolean randomAge, Field field, Location location) {
         super(randomAge, field, location);
-        foodLevel = RANDOM.nextInt(RABBIT_FOOD_VALUE);
+        foodLevel = RANDOM.nextInt(FoodValue.RABBIT_FOOD_VALUE.getFoodValue());
     }
 
     @Override
@@ -98,9 +95,18 @@ public class Tiger extends Animal{
             Object animal = getField().getObjectAt(where);
             if (animal instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) animal;
+
                 if (rabbit.isAlive()) {
                     rabbit.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
+                    foodLevel = FoodValue.RABBIT_FOOD_VALUE.getFoodValue();
+                    return where;
+                }
+            }
+            else if (animal instanceof Fox) {
+                Fox fox = (Fox) animal;
+                if (fox.isAlive()) {
+                    fox.setDead();
+                    foodLevel = FoodValue.FOX_FOOD_VALUE.getFoodValue();
                     return where;
                 }
             }
