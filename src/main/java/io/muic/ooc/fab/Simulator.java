@@ -126,7 +126,7 @@ public class Simulator {
     public void simulateOneStep() {
         step++;
 
-        // Provide space for newborn rabbits.
+        // Provide space for newborn Animals.
         List<Animal> newAnimals = new ArrayList<>();
         // Let all animal act.
         for (Iterator<Animal> it = animals.iterator(); it.hasNext();) {

@@ -5,7 +5,8 @@ import java.awt.*;
 public enum AnimalTypes {
 
     RABBIT(Rabbit.class, Color.ORANGE, 0.08),
-    FOX(Fox.class, Color.BLUE, 0.02);
+    FOX(Fox.class, Color.BLUE, 0.02),
+    TIGER(Tiger.class, Color.RED, 0.02);
 
     private Class<? extends Animal> animalClass;
 
