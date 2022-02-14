@@ -6,7 +6,9 @@ public enum AnimalTypes {
 
     RABBIT(Rabbit.class, Color.ORANGE, 0.08),
     FOX(Fox.class, Color.BLUE, 0.02),
-    TIGER(Tiger.class, Color.RED, 0.02);
+    TIGER(Tiger.class, Color.RED, 0.02),
+    HUNTER(Hunter.class, Color.GREEN, 0.02);
+
 
     private Class<? extends Animal> animalClass;
 
